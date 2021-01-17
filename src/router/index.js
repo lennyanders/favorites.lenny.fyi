@@ -19,3 +19,8 @@ export const router = createRouter({
   history: createWebHistory(),
   routes: [...mainRoutes],
 });
+
+const initialTitle = document.title;
+router.afterEach(({ name }) => {
+  document.title = `${name} | ${initialTitle}`;
+});
