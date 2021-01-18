@@ -1,11 +1,9 @@
 <script setup>
   import MediaList from '@components/MediaList.vue';
   import MediaItem from '@components/MediaItem.vue';
-  import { toReadableList } from '@utils';
+  import { toReadableList, toMediaItemList } from '@utils';
 
-  const shorts = Object.entries(
-    import.meta.globEager('../data/shorts/*.json'),
-  ).map(([key, short]) => ({ ...short.default, id: key }));
+  const shorts = toMediaItemList(import.meta.globEager('../data/shorts/*.json'));
 </script>
 
 <template>
