@@ -1,16 +1,16 @@
 <script setup>
+  import MediaList from '@components/MediaList.vue';
   import MediaItem from '@components/MediaItem.vue';
+  import { toReadableList } from '@utils';
 
   const shorts = Object.entries(
     import.meta.globEager('../data/shorts/*.json'),
   ).map(([key, short]) => ({ ...short.default, id: key }));
-
-  const toReadableList = (list) =>
-    list.length > 1 ? `${list.slice(0, -1).join(', ')} & ${list[list.length - 1]}` : list[0];
 </script>
 
 <template>
-  <ul class="media-list">
+  <h2>My Favorite Short Films</h2>
+  <MediaList class="media-list">
     <MediaItem
       v-for="short in shorts"
       :key="short.id"
@@ -24,15 +24,5 @@
       {{ toReadableList(short.styles) }}
       {{ short.franchises?.length ? ` | ${toReadableList(short.franchises)}` : '' }}
     </MediaItem>
-  </ul>
+  </MediaList>
 </template>
-
-<style lang="scss" scoped>
-  .media-list {
-    list-style: none;
-    margin: 0;
-    padding-left: 0;
-    display: grid;
-    gap: 0.5rem;
-  }
-</style>

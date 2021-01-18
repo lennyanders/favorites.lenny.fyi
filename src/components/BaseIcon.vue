@@ -4,6 +4,7 @@
 
 <style scoped>
   svg {
+    display: block;
     width: 1.5rem;
     height: 1.5rem;
     fill: currentColor;

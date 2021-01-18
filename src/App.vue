@@ -1,5 +1,5 @@
 <script setup>
-  import { mainRoutes } from '@router';
+  import { routes } from '@router';
 </script>
 
 <template>
@@ -7,7 +7,7 @@
     <h1>favorites.lenny.fyi</h1>
     <nav class="nav">
       <RouterLink
-        v-for="{ name } of mainRoutes"
+        v-for="{ name } of routes"
         :key="name"
         :to="{ name }"
         class="nav__item"
@@ -45,25 +45,45 @@
 
   .nav {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
+    padding: 0 0.75rem;
     gap: 0.5rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #191919;
 
     &__item {
+      position: relative;
       padding: 0.5rem;
       color: #888;
-      border-bottom: 2px solid #191919;
       font-weight: bold;
+      transition: color 0.2s ease;
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        background-color: #e92063;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
 
       &--active {
-        border-color: #e92063;
         color: #ddd;
+
+        &::after {
+          opacity: 1;
+        }
       }
     }
   }
 
   footer {
     display: flex;
+    flex-wrap: wrap;
     padding: 1rem;
     gap: 1rem;
     border-top: 2px solid #191919;
@@ -79,12 +99,13 @@
   @import url('./fonts.css');
 
   body {
-    padding: 5rem 1rem 0;
+    padding: 5rem 0.5rem 0;
     margin: 0;
     font-family: 'atkinson_hyperlegible', Helvetica, Arial, sans-serif;
     background-color: #111;
     color: #f9f9f9;
     overflow-y: scroll;
+    line-height: 1.5;
   }
 
   h1,
@@ -93,8 +114,19 @@
     margin: 0;
   }
 
+  h2 {
+    padding-left: 1rem;
+  }
+
   a {
     text-decoration: none;
     color: currentColor;
+  }
+
+  @media screen and (min-width: 32rem) {
+    body {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 </style>

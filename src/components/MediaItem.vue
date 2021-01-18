@@ -20,7 +20,7 @@
 <template>
   <li class="media-item">
     <div class="media-item__top">
-      <h2>{{ title }}</h2>
+      <h3>{{ title }}</h3>
       <ImdbLink v-if="imdbId" :id="imdbId" />
       <YoutubeLink v-if="youtubeId" :id="youtubeId" />
       <VimeoLink v-if="vimeoId" :id="vimeoId" />
@@ -34,7 +34,7 @@
   .media-item {
     display: grid;
     gap: 0.5rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1rem;
     background-color: #191919;
     border-radius: 0.25rem;
     color: #ddd;
@@ -44,7 +44,7 @@
       gap: 0.25rem;
       color: #fafafa;
 
-      > h2 {
+      > h3 {
         flex: 1;
       }
     }
