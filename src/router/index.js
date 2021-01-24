@@ -1,32 +1,31 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { resolveDynamicComponent } from 'vue';
 
 export const routes = [
   {
     name: 'short',
     path: '/short',
     alias: '/',
-    component: resolveDynamicComponent(() => import('@views/short.vue')),
+    component: () => import('@views/short.vue'),
   },
   {
     name: 'amv',
     path: '/amv',
-    component: resolveDynamicComponent(() => import('@views/amv.vue')),
+    component: () => import('@views/amv.vue'),
   },
   {
     name: 'mv',
     path: '/mv',
-    component: resolveDynamicComponent(() => import('@views/mv.vue')),
+    component: () => import('@views/mv.vue'),
   },
   {
     name: 'film',
     path: '/film',
-    component: resolveDynamicComponent(() => import('@views/film.vue')),
+    component: () => import('@views/film.vue'),
   },
   {
     name: 'tv',
     path: '/tv',
-    component: resolveDynamicComponent(() => import('@views/tv.vue')),
+    component: () => import('@views/tv.vue'),
   },
 ];
 
