@@ -1,9 +1,8 @@
 <script setup>
   import MediaList from '@components/MediaList.vue';
   import MediaItem from '@components/MediaItem.vue';
-  import { toReadableList, toMediaItemList } from '@utils';
-
-  const amvs = toMediaItemList(import.meta.globEager('../data/amvs/*.json'));
+  import { amvs } from '@data';
+  import { toReadableList } from '@utils';
 </script>
 
 <template>
