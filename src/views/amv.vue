@@ -7,7 +7,6 @@
 </script>
 
 <template>
-  <h2>My Favorite AMVs</h2>
   <MediaList>
     <MediaItem
       v-for="amv in amvs"

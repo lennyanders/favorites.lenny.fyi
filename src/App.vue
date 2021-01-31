@@ -1,10 +1,23 @@
 <script setup>
-  import { routes } from '@router';
+  import { computed } from 'vue';
+  import { currentRoute, routes } from '@router';
+  import { useHead } from '@vueuse/head';
+
+  const pageTitle = 'favorites.lenny.fyi';
+  const title = computed(
+    () => currentRoute.value.name && `${currentRoute.value.name} | ${pageTitle}`,
+  );
+  const description = computed(() => currentRoute.value.meta?.description);
+
+  useHead({
+    title,
+    meta: [{ name: 'description', content: description }],
+  });
 </script>
 
 <template>
   <main>
-    <h1>favorites.lenny.fyi</h1>
+    <h1>{{ pageTitle }}</h1>
     <nav class="nav">
       <RouterLink
         v-for="{ name } of routes"
@@ -16,11 +29,14 @@
         {{ name }}
       </RouterLink>
     </nav>
+    <h2>{{ description }}</h2>
     <RouterView v-slot="{ Component }">
       <KeepAlive>
         <component :is="Component" />
       </KeepAlive>
     </RouterView>
+    <!-- <YoutubePlayer :id="ytId" /> -->
+    <!-- <VimeoPlayer :id="vimeoId" /> -->
     <footer>
       <span>© 2021 – Lenny Anders</span>
       <a href="https://lenny.fyi/">Personal Homepage</a>
@@ -81,6 +97,10 @@
     }
   }
 
+  h2 {
+    padding-left: 1rem;
+  }
+
   footer {
     display: flex;
     flex-wrap: wrap;
@@ -114,10 +134,6 @@
     margin: 0;
   }
 
-  h2 {
-    padding-left: 1rem;
-  }
-
   a {
     text-decoration: none;
     color: currentColor;
@@ -128,5 +144,14 @@
       padding-left: 1rem;
       padding-right: 1rem;
     }
+  }
+
+  iframe {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 640px;
+    height: 360px;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
   }
 </style>

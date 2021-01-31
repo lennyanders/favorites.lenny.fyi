@@ -6,13 +6,15 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@vimeo/player": "^2.15.0",
+    "@vueuse/head": "^0.2.3",
     "vue": "^3.0.5",
     "vue-router": "^4.0.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.2",
+    "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
     "sass": "^1.32.5",
-    "vite": "^2.0.0-beta.46"
+    "vite": "^2.0.0-beta.60"
   }
 }

@@ -7,7 +7,6 @@
 </script>
 
 <template>
-  <h2>My Favorite Short Films</h2>
   <MediaList class="media-list">
     <MediaItem
       v-for="short in shorts"
