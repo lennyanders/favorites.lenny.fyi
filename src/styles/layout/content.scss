@@ -1,0 +1,32 @@
+body {
+  padding: 5rem 0.5rem 0;
+  margin: 0;
+  font-family: 'atkinson_hyperlegible', Helvetica, Arial, sans-serif;
+  background-color: #111;
+  color: #f9f9f9;
+  overflow-y: scroll;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 32rem) {
+  body {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+main {
+  max-width: 56rem;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  padding-left: 1rem;
+}

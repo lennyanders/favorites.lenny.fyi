@@ -2,19 +2,19 @@
   "name": "favorites.lenny.fyi",
   "version": "0.0.0",
   "scripts": {
-    "start": "vite",
-    "build": "vite build"
-  },
-  "dependencies": {
-    "@vimeo/player": "^2.15.0",
-    "@vueuse/head": "^0.2.3",
-    "vue": "^3.0.5",
-    "vue-router": "^4.0.3"
+    "start": "node -r esm node_modules/@11ty/eleventy/cmd.js --serve",
+    "build": "node -r esm node_modules/@11ty/eleventy/cmd.js"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.1.4",
-    "@vue/compiler-sfc": "^3.0.5",
-    "sass": "^1.32.5",
-    "vite": "^2.0.0-beta.60"
+    "@11ty/eleventy": "^0.11.1",
+    "esm": "^3.2.25",
+    "sass": "^1.32.6",
+    "~components": "file:src/components",
+    "~utils": "file:src/utils"
+  },
+  "esm": {
+    "cjs": {
+      "dedefault": true
+    }
   }
 }
