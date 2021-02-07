@@ -1,4 +1,5 @@
-import { html } from '~utils';
+import { html, toReadableList } from '~utils';
+import mediaItem from '~components/mediaItem';
 
 export const data = {
   layout: 'base',
@@ -8,6 +9,11 @@ export const data = {
   order: 2,
 };
 
-export const render = ({}) => {
-  return html``;
-};
+export const render = ({ mvs }) =>
+  Object.values(mvs).map((mv) =>
+    mediaItem(
+      mv,
+      html`${mv.releaseYear} | ${toReadableList(mv.directors)} | ${toReadableList(mv.musicArtists)}
+      | ${toReadableList(mv.styles)}`,
+    ),
+  );

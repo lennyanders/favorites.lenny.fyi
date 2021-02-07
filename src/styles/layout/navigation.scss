@@ -26,12 +26,13 @@
       transition: opacity 0.2s ease;
     }
 
-    &[aria-current] {
+    &[aria-current],
+    &:hover {
       color: #ddd;
+    }
 
-      &::after {
-        opacity: 1;
-      }
+    &[aria-current]::after {
+      opacity: 1;
     }
   }
 }
