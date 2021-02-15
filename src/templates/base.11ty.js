@@ -1,4 +1,84 @@
-import { html } from '~utils';
+import theNavigation from '~components/theNavigation';
+import theFooter from '~components/theFooter';
+import { css, html } from '~utils';
+
+css`
+  body {
+    margin: 0;
+    padding: 5rem 0.5rem 0;
+    font-family: 'atkinson_hyperlegible', Helvetica, Arial, sans-serif;
+    background-color: #111;
+    color: #f9f9f9;
+    overflow-y: scroll;
+    line-height: 1.5;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: currentColor;
+  }
+
+  @font-face {
+    font-family: 'atkinson_hyperlegible';
+    src: url('/fonts/Atkinson-Hyperlegible-Bold-102a.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'atkinson_hyperlegible';
+    src: url('/fonts/Atkinson-Hyperlegible-BoldItalic-102a.woff2') format('woff2');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'atkinson_hyperlegible';
+    src: url('/fonts/Atkinson-Hyperlegible-Italic-102a.woff2') format('woff2');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'atkinson_hyperlegible';
+    src: url('/fonts/Atkinson-Hyperlegible-Regular-102a.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @media screen and (min-width: 32rem) {
+    body {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  main {
+    max-width: 56rem;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    padding-left: 1rem;
+  }
+`;
 
 const pageTitle = 'favorites.lenny.fyi';
 
@@ -15,30 +95,9 @@ export const render = ({ content, title, description, collections }) => {
       <body>
         <main>
           <h1>${pageTitle}</h1>
-          <nav class="nav">
-            ${collections.nav
-              .sort((a, b) => a.data.order - b.data.order)
-              .map(
-                (page) =>
-                  html`<a
-                    href="${page.url}"
-                    class="nav__item"
-                    ${page.data.title === title && 'aria-current="page"'}
-                  >
-                    ${page.data.title}
-                  </a>`,
-              )}
-          </nav>
+          ${theNavigation({ collections, title })}
           <h2>${description}</h2>
-          <ul class="media-list">
-            ${content}
-          </ul>
-          <footer>
-            <span>© 2021 – Lenny Anders</span>
-            <a href="https://lenny.fyi/">Personal Homepage</a>
-            <a href="https://lenny.fyi/legal">Legal</a>
-            <a href="https://lenny.fyi/privacy">Privacy Policy</a>
-          </footer>
+          ${content} ${theFooter()}
         </main>
       </body>
     </html>`;

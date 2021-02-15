@@ -2,19 +2,15 @@
   "name": "favorites.lenny.fyi",
   "version": "0.0.0",
   "scripts": {
-    "start": "node -r esm node_modules/@11ty/eleventy/cmd.js --serve",
-    "build": "node -r esm node_modules/@11ty/eleventy/cmd.js"
+    "start": "node -r ./cssFromJsLoader.js -r esbuild-register node_modules/@11ty/eleventy/cmd.js --serve",
+    "build": "node -r ./cssFromJsLoader.js -r esbuild-register node_modules/@11ty/eleventy/cmd.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
-    "esm": "^3.2.25",
-    "sass": "^1.32.6",
+    "esbuild": "^0.8.46",
+    "esbuild-register": "^2.0.0",
+    "pirates": "^4.0.1",
     "~components": "file:src/components",
     "~utils": "file:src/utils"
-  },
-  "esm": {
-    "cjs": {
-      "dedefault": true
-    }
   }
 }

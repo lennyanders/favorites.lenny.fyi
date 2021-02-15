@@ -1,4 +1,5 @@
 import { html, toReadableList } from '~utils';
+import mediaList from '~components/mediaList';
 import mediaItem from '~components/mediaItem';
 
 export const data = {
@@ -10,10 +11,13 @@ export const data = {
 };
 
 export const render = ({ shorts }) =>
-  Object.values(shorts).map((short) =>
-    mediaItem(
-      short,
-      html`${short.releaseYear} | ${short.duration} min | ${toReadableList(short.directors)} |
-      ${toReadableList(short.styles)}${short.franchises && ` | ${toReadableList(short.franchises)}`}`,
+  mediaList(
+    Object.values(shorts).map((short) =>
+      mediaItem(
+        short,
+        html`${short.releaseYear} | ${short.duration} min | ${toReadableList(short.directors)} |
+        ${toReadableList(short.styles)}${short.franchises &&
+        ` | ${toReadableList(short.franchises)}`}`,
+      ),
     ),
   );

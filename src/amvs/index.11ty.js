@@ -1,4 +1,5 @@
 import { html, toReadableList } from '~utils';
+import mediaList from '~components/mediaList';
 import mediaItem from '~components/mediaItem';
 
 export const data = {
@@ -10,10 +11,12 @@ export const data = {
 };
 
 export const render = ({ amvs }) =>
-  Object.values(amvs).map((amv) =>
-    mediaItem(
-      amv,
-      html`${amv.releaseYear} | ${toReadableList(amv.creators)} | ${amv.music} |
-      ${toReadableList(amv.franchises)}`,
+  mediaList(
+    Object.values(amvs).map((amv) =>
+      mediaItem(
+        amv,
+        html`${amv.releaseYear} | ${toReadableList(amv.creators)} | ${amv.music} |
+        ${toReadableList(amv.franchises)}`,
+      ),
     ),
   );

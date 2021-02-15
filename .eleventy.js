@@ -9,12 +9,10 @@ const config = {
   },
 };
 
-export default (eleventyConfig) => {
+module.exports = (eleventyConfig) => {
   rmSync('dist', { force: true, recursive: true });
 
   eleventyConfig.addPassthroughCopy({ 'src/assets': '.' });
-
-  eleventyConfig.addWatchTarget('src/styles');
 
   return config;
 };

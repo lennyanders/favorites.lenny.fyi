@@ -1,4 +1,4 @@
-import { html } from '~utils';
+import { css, html } from '~utils';
 import animemusicvideos from './IconLinks/animemusicvideos';
 import amvnews from './IconLinks/amvnews';
 import akross from './IconLinks/akross';
@@ -8,6 +8,25 @@ import netflix from './IconLinks/netflix';
 import youtube from './IconLinks/youtube';
 import vimeo from './IconLinks/vimeo';
 import web from './IconLinks/web';
+
+const rootClass = css`
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  background-color: #191919;
+  border-radius: 0.25rem;
+  color: #ddd;
+`;
+
+const TopClass = css`
+  display: flex;
+  gap: 0.25rem;
+  color: #fafafa;
+`;
+
+const headlineClass = css`
+  flex: 1;
+`;
 
 export default (
   {
@@ -23,9 +42,9 @@ export default (
     homepage,
   },
   content,
-) => html`<li class="media-item">
-  <div class="media-item__top">
-    <h3>${title}</h3>
+) => html`<li class="${rootClass}">
+  <div class="${TopClass}">
+    <h3 class="${headlineClass}">${title}</h3>
     ${animemusicvideosId && animemusicvideos(animemusicvideosId)} ${amvnewsId && amvnews(amvnewsId)}
     ${akrossId && akross(akrossId)} ${imdbId && imdb(imdbId)}
     ${disneyPlusId && disney(disneyPlusId)} ${netflixId && netflix(netflixId)}
