@@ -1,5 +1,5 @@
 const { addHook } = require('pirates');
-const { writeFileSync } = require('fs');
+const { existsSync, mkdirSync, writeFileSync } = require('fs');
 
 let timeout;
 let docCounter = -1;
@@ -9,10 +9,11 @@ const allCss = {};
 addHook((code, filename) => {
   if (!code.includes('css`')) return code;
 
-  let id = '';
   const [firstCodeBlock, ...codeBlocksStartingWithCss] = code.split('css`');
 
+  let cssBlockWithIdCounter = -1;
   const newCode = codeBlocksStartingWithCss.reduce((result, codeBlock, index) => {
+    let id = '';
     const lastIndex = codeBlock.indexOf('`');
 
     const css = codeBlock
@@ -41,7 +42,7 @@ addHook((code, filename) => {
     if (step2.includes('&')) {
       if (!docIdMap.has(filename)) docIdMap.set(filename, (++docCounter).toString());
 
-      id = `y${docIdMap.get(filename)}${index.toString(36)}`;
+      id = `y${docIdMap.get(filename)}${(++cssBlockWithIdCounter).toString(36)}`;
       step2 = step2.replace(/&/g, `.${id}`);
     }
 
@@ -53,6 +54,8 @@ addHook((code, filename) => {
 
     clearTimeout(timeout);
     timeout = setTimeout(() => {
+      if (!existsSync('dist')) mkdirSync('dist');
+
       writeFileSync(
         'dist/main.css',
         Object.values(allCss)
