@@ -18,17 +18,23 @@ const originClass = css`
 
 export const render = ({ movies }) =>
   mediaList(
-    Object.values(movies).map((movie) => {
-      movie.title = html`${movie.title}${movie.originalTitle &&
-      ` (${movie.originalTitle}${
-        movie.origin && html` <small class="${originClass}">${movie.origin}</small>`
-      })`}`;
+    Object.values(movies)
+      .sort((a, b) => {
+        const textA = a.title.toUpperCase();
+        const textB = b.title.toUpperCase();
+        return textA < textB ? -1 : textA > textB ? 1 : 0;
+      })
+      .map((movie) => {
+        movie.title = html`${movie.title}${movie.originalTitle &&
+        ` (${movie.originalTitle}${
+          movie.origin && html` <small class="${originClass}">${movie.origin}</small>`
+        })`}`;
 
-      return mediaItem(
-        movie,
-        html`${movie.releaseYear} | ${movie.duration} min | ${toReadableList(movie.directors)} |
-        ${toReadableList(movie.styles)}${movie.franchises &&
-        ` | ${toReadableList(movie.franchises)}`}`,
-      );
-    }),
+        return mediaItem(
+          movie,
+          html`${movie.releaseYear} | ${movie.duration} min | ${toReadableList(movie.directors)} |
+          ${toReadableList(movie.styles)}${movie.franchises &&
+          ` | ${toReadableList(movie.franchises)}`}`,
+        );
+      }),
   );

@@ -1,9 +1,12 @@
 const { addHook } = require('pirates');
 const { existsSync, mkdirSync, writeFileSync } = require('fs');
 
+/** @type {NodeJS.Timeout} */
 let timeout;
 let docCounter = -1;
 const docIdMap = new Map();
+
+/** @type {Object.<string, string[]>} */
 const allCss = {};
 
 addHook((code, filename) => {
