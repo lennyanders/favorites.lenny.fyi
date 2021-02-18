@@ -94,7 +94,7 @@ export const render = ({ content, title, description, collections }) => {
       </head>
       <body>
         <main>
-          <h1>${pageTitle}</h1>
+          <h1><a href="/">${pageTitle}</a></h1>
           ${theNavigation({ collections, title })}
           <h2>${description}</h2>
           ${content} ${theFooter()}
