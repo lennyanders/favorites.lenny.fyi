@@ -5,6 +5,7 @@ import akross from './IconLinks/akross';
 import imdb from './IconLinks/imdb';
 import disney from './IconLinks/disney';
 import netflix from './IconLinks/netflix';
+import amazon from './IconLinks/amazon';
 import youtube from './IconLinks/youtube';
 import vimeo from './IconLinks/vimeo';
 import web from './IconLinks/web';
@@ -37,6 +38,7 @@ export default (
     imdbId,
     disneyPlusId,
     netflixId,
+    amazonPrimeId,
     youtubeId,
     vimeoId,
     homepage,
@@ -48,7 +50,8 @@ export default (
     ${animemusicvideosId && animemusicvideos(animemusicvideosId)} ${amvnewsId && amvnews(amvnewsId)}
     ${akrossId && akross(akrossId)} ${imdbId && imdb(imdbId)}
     ${disneyPlusId && disney(disneyPlusId)} ${netflixId && netflix(netflixId)}
-    ${youtubeId && youtube(youtubeId)} ${vimeoId && vimeo(vimeoId)} ${homepage && web(homepage)}
+    ${amazonPrimeId && amazon(amazonPrimeId)} ${youtubeId && youtube(youtubeId)}
+    ${vimeoId && vimeo(vimeoId)} ${homepage && web(homepage)}
   </div>
   ${content}
 </li>`;
