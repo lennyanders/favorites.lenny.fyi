@@ -1,4 +1,5 @@
-import { rmSync } from 'fs';
+import { rmSync, writeFileSync } from 'fs';
+import { allCss } from '~utils';
 
 const config = {
   dir: {
@@ -13,6 +14,15 @@ module.exports = (eleventyConfig) => {
   rmSync('dist', { force: true, recursive: true });
 
   eleventyConfig.addPassthroughCopy({ 'src/assets': '.' });
+
+  eleventyConfig.on('afterBuild', () => {
+    writeFileSync(
+      'dist/main.css',
+      Object.values(allCss)
+        .map((cssParts) => cssParts.join(''))
+        .join(''),
+    );
+  });
 
   return config;
 };

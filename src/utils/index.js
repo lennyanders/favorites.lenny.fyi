@@ -27,6 +27,58 @@ export const css = (_strings, ..._interpolations) => {
   );
 };
 
+/** @type {Object.<string, string[]>} */
+export const allCss = {};
+
+const docIdMap = new Map();
+let docCounter = -1;
+
+let oldFilename, cssBlockCounter, cssBlockWithIdCounter;
+export const cssCollector = (filename, css) => {
+  let id = '';
+
+  if (filename !== oldFilename) {
+    cssBlockCounter = -1;
+    cssBlockWithIdCounter = -1;
+  }
+
+  css = css
+    .trim()
+    .replace(/\s*;\s*/g, ';')
+    .replace(/\s*:\s*/g, ':')
+    .replace(/\s*{\s*/g, '{')
+    .replace(/\s*}\s*/g, '}')
+    .replace(/\s*,\s*/g, ',')
+    .replace(/\s+/g, ' ');
+
+  let step2 = css.split('{');
+  const firstPart = step2[0];
+  if (firstPart.includes(':')) {
+    if (firstPart.endsWith(';')) {
+      step2[0] = `${firstPart}}`;
+    } else {
+      const split = firstPart.split(';');
+      step2[0] = `${split.slice(0, -1).join(';')};}${split[split.length - 1]}`;
+    }
+    step2.unshift('&');
+  }
+  step2 = step2.join('{');
+
+  if (step2.includes('&')) {
+    if (!docIdMap.has(filename)) docIdMap.set(filename, (++docCounter).toString());
+
+    id = `y${docIdMap.get(filename)}${(++cssBlockWithIdCounter).toString(36)}`;
+    step2 = step2.replace(/&/g, `.${id}`);
+  }
+
+  if (!allCss[filename]) allCss[filename] = [];
+  allCss[filename][++cssBlockCounter] = step2;
+
+  oldFilename = filename;
+
+  return id;
+};
+
 /**
  * @param {String[]} list
  */
