@@ -23,7 +23,7 @@ export const html = (strings, ...interpolations) =>
  */
 export const css = (_strings, ..._interpolations) => {
   throw new Error(
-    'Using the "css" tag in runtime is not supported. Make sure you have preloaded the cssLoaderModule correctly',
+    'Using the "css" tag directly is not supported. Make sure you have preloaded the cssLoaderModule correctly',
   );
 };
 
