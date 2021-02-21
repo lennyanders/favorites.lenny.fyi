@@ -29,9 +29,17 @@ const headlineClass = css`
   flex: 1;
 `;
 
+const originClass = css`
+  text-transform: uppercase;
+  opacity: 0.75;
+  font-weight: 400;
+`;
+
 export default (
   {
     title,
+    originalTitle,
+    origin,
     animemusicvideosId,
     amvnewsId,
     akrossId,
@@ -46,7 +54,10 @@ export default (
   content,
 ) => html`<li class="${rootClass}">
   <div class="${TopClass}">
-    <h3 class="${headlineClass}">${title}</h3>
+    <h3 class="${headlineClass}">
+      ${title}${originalTitle &&
+      ` (${originalTitle}${origin && html` <small class="${originClass}">${origin}</small>`})`}
+    </h3>
     ${animemusicvideosId && animemusicvideos(animemusicvideosId)} ${amvnewsId && amvnews(amvnewsId)}
     ${akrossId && akross(akrossId)} ${imdbId && imdb(imdbId)}
     ${disneyPlusId && disney(disneyPlusId)} ${netflixId && netflix(netflixId)}
