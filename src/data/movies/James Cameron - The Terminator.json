@@ -1,0 +1,10 @@
+{
+  "directors": ["James Cameron"],
+  "title": "The Terminator",
+  "origin": "us",
+  "duration": 107,
+  "releaseYear": 1984,
+  "franchises": ["Terminator"],
+  "styles": ["Live action"],
+  "imdbId": "0088247"
+}

@@ -1,0 +1,11 @@
+{
+  "directors": ["James Cameron"],
+  "title": "Aliens",
+  "origin": "us",
+  "duration": 137,
+  "releaseYear": 1986,
+  "franchises": ["Alien"],
+  "styles": ["Live action"],
+  "imdbId": "0090605",
+  "homepage": "https://www.20thcenturystudios.com/movies/aliens"
+}
