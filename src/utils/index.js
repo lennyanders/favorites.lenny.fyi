@@ -17,14 +17,22 @@ export const html = (strings, ...interpolations) =>
     })
     .join('');
 
-/**
- * @param {TemplateStringsArray} _strings
- * @param  {any[]} _interpolations
- */
-export const css = (_strings, ..._interpolations) => {
-  throw new Error(
-    'Using the "css" tag directly is not supported. Make sure you have preloaded the cssLoaderModule correctly',
-  );
+// https://stackoverflow.com/questions/16697791/nodejs-get-filename-of-caller-function#29581862
+const getCallerFile = () => {
+  const originalErrorPrepareStackTrace = Error.prepareStackTrace;
+  try {
+    Error.prepareStackTrace = (_err, stack) => stack;
+
+    const error = new Error();
+    const currentfile = error.stack.shift().getFileName();
+
+    while (error.stack.length) {
+      const callerfile = error.stack.shift().getFileName();
+      if (callerfile !== currentfile) return callerfile;
+    }
+  } finally {
+    Error.prepareStackTrace = originalErrorPrepareStackTrace;
+  }
 };
 
 /** @type {Object.<string, string[]>} */
@@ -34,7 +42,13 @@ const docIdMap = new Map();
 let docCounter = -1;
 
 let oldFilename, cssBlockCounter, cssBlockWithIdCounter;
-export const cssCollector = (filename, css) => {
+
+/**
+ * @param {TemplateStringsArray} strings
+ * @param  {any[]} interpolations
+ */
+export const css = (strings, ...interpolations) => {
+  const filename = getCallerFile();
   let id = '';
 
   if (filename !== oldFilename) {
@@ -42,7 +56,7 @@ export const cssCollector = (filename, css) => {
     cssBlockWithIdCounter = -1;
   }
 
-  css = css
+  const css = String.raw(strings, ...interpolations)
     .trim()
     .replace(/\s*;\s*/g, ';')
     .replace(/\s*:\s*/g, ':')
