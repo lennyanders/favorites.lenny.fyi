@@ -7,9 +7,9 @@
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.1",
-    "esbuild": "^0.8.50",
-    "esbuild-register": "^2.0.0",
     "~components": "file:src/components",
-    "~utils": "file:src/utils"
+    "~utils": "file:src/utils",
+    "esbuild": "^0.8.55",
+    "esbuild-register": "^2.1.0"
   }
 }

@@ -1,12 +1,15 @@
 import { css, html } from '~utils';
 
-const navClass = css`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 0 0.75rem;
-  gap: 0.5rem;
-  text-transform: uppercase;
-  border-bottom: 2px solid #191919;
+css`
+  nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 0.75rem;
+    gap: 0.5rem;
+    text-transform: uppercase;
+    border-bottom: 2px solid #191919;
+    color: red;
+  }
 `;
 
 const navItemClass = css`
@@ -39,7 +42,7 @@ const navItemClass = css`
   }
 `;
 
-export default ({ collections, title }) => html`<nav class="${navClass}">
+export default ({ collections, title }) => html`<nav>
   ${collections.nav
     .sort((a, b) => a.data.order - b.data.order)
     .map(

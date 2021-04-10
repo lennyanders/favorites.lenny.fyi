@@ -1,19 +1,21 @@
 import { css, html } from '~utils';
 
-const footerClass = css`
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1rem;
-  gap: 1rem;
-  border-top: 2px solid #191919;
-  color: #ddd;
+css`
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    gap: 1rem;
+    border-top: 2px solid #191919;
+    color: #ddd;
+  }
 
-  & a:first-of-type {
+  footer a:first-of-type {
     margin-right: auto;
   }
 `;
 
-export default () => html`<footer class="${footerClass}">
+export default () => html`<footer>
   <span>© 2021 – Lenny Anders</span>
   <a href="https://lenny.fyi/">Personal Homepage</a>
   <a href="https://lenny.fyi/legal">Legal</a>

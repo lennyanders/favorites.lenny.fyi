@@ -20,6 +20,7 @@ export const html = (strings, ...interpolations) =>
 // https://stackoverflow.com/questions/16697791/nodejs-get-filename-of-caller-function#29581862
 const getCallerFile = () => {
   const originalErrorPrepareStackTrace = Error.prepareStackTrace;
+  let callerfile;
   try {
     Error.prepareStackTrace = (_err, stack) => stack;
 
@@ -27,11 +28,12 @@ const getCallerFile = () => {
     const currentfile = error.stack.shift().getFileName();
 
     while (error.stack.length) {
-      const callerfile = error.stack.shift().getFileName();
-      if (callerfile !== currentfile) return callerfile;
+      callerfile = error.stack.shift().getFileName();
+      if (callerfile !== currentfile) break;
     }
   } finally {
     Error.prepareStackTrace = originalErrorPrepareStackTrace;
+    return callerfile;
   }
 };
 
@@ -81,7 +83,9 @@ export const css = (strings, ...interpolations) => {
   if (step2.includes('&')) {
     if (!docIdMap.has(filename)) docIdMap.set(filename, (++docCounter).toString());
 
-    id = `y${docIdMap.get(filename)}${(++cssBlockWithIdCounter).toString(36)}`;
+    id = `y${docIdMap.get(filename)}${
+      ++cssBlockWithIdCounter > 0 ? (cssBlockWithIdCounter - 1).toString(36) : ''
+    }`;
     step2 = step2.replace(/&/g, `.${id}`);
   }
 
