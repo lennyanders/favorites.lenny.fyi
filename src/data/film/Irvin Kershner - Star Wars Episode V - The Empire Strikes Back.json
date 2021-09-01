@@ -1,0 +1,11 @@
+{
+  "directors": ["Irvin Kershner"],
+  "title": "Star Wars: Episode V - The Empire Strikes Back",
+  "origin": "us",
+  "duration": 124,
+  "releaseYear": 1980,
+  "styles": ["Live action"],
+  "franchises": ["Star Wars"],
+  "homepage": "https://www.starwars.com/films/star-wars-episode-v-the-empire-strikes-back",
+  "imdbId": "0080684"
+}

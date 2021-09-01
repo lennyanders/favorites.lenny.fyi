@@ -1,0 +1,18 @@
+{
+  "type": "object",
+  "properties": {
+    "creators": { "type": "array", "items": { "type": "string" } },
+    "title": { "type": "string" },
+    "releaseYear": { "type": "number" },
+    "franchises": { "type": "array", "items": { "type": "string" } },
+    "music": { "type": "string" },
+    "akrossId": { "type": "string" },
+    "amvnewsId": { "type": "string" },
+    "animemusicvideosId": { "type": "string" },
+    "homepage": { "type": "string" },
+    "vimeoId": { "type": "string" },
+    "youtubeId": { "type": "string" }
+  },
+  "required": ["creators", "title"],
+  "additionalProperties": false
+}

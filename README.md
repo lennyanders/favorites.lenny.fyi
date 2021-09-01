@@ -16,4 +16,4 @@ npm run build
 
 ## ToDo
 
-- add dots (.) back to data filenames when 11ty bug got fixed ([@11ty/elevent#1242](https://github.com/11ty/eleventy/issues/1242))
+- Use `json-schema-to-ts` when json schemas can be importet from file ([json-schema-to-ts#33](https://github.com/ThomasAribart/json-schema-to-ts/issues/33))

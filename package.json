@@ -1,15 +1,26 @@
 {
   "name": "favorites.lenny.fyi",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "start": "node -r esbuild-register node_modules/@11ty/eleventy/cmd.js --serve",
-    "build": "node -r esbuild-register node_modules/@11ty/eleventy/cmd.js"
+    "start": "node --experimental-json-modules scripts/render.js --serve",
+    "build": "node --experimental-json-modules scripts/render.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
-    "@11ty/eleventy": "^0.12.1",
-    "~components": "file:src/components",
-    "~utils": "file:src/utils",
-    "esbuild": "^0.12.15",
-    "esbuild-register": "^2.6.0"
+    "@types/browser-sync": "^2.26.2",
+    "@types/node": "^16.7.5",
+    "browser-sync": "^2.27.5",
+    "csstype": "^3.0.8",
+    "data": "file:data",
+    "esbuild": "^0.12.24",
+    "preact": "^10.5.14",
+    "preact-render-to-string": "^5.1.19",
+    "totalist": "^2.0.0",
+    "watchlist": "^0.3.0"
   }
 }

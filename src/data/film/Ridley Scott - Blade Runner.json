@@ -1,0 +1,11 @@
+{
+  "directors": ["Ridley Scott"],
+  "title": "Blade Runner",
+  "origin": "us",
+  "duration": 117,
+  "releaseYear": 1982,
+  "styles": ["Live action"],
+  "franchises": ["Blade Runner"],
+  "homepage": "https://www.warnerbros.com/movies/blade-runner",
+  "imdbId": "0083658"
+}

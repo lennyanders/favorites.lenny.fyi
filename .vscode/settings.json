@@ -1,0 +1,27 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "json.schemas": [
+    {
+      "fileMatch": ["src/data/amv/**/*.json", "!src/data/amv/_schema.json"],
+      "url": "./src/data/amv/_schema.json"
+    },
+    {
+      "fileMatch": ["src/data/film/**/*.json", "!src/data/film/_schema.json"],
+      "url": "./src/data/film/_schema.json"
+    },
+    {
+      "fileMatch": ["src/data/mv/**/*.json", "!src/data/mv/_schema.json"],
+      "url": "./src/data/mv/_schema.json"
+    },
+    {
+      "fileMatch": ["src/data/tv/**/*.json", "!src/data/tv/_schema.json"],
+      "url": "./src/data/tv/_schema.json"
+    },
+    {
+      "fileMatch": ["src/data/short/**/*.json", "!src/data/short/_schema.json"],
+      "url": "./src/data/short/_schema.json"
+    }
+  ]
+}

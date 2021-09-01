@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "properties": {
+    "directors": { "type": "array", "items": { "type": "string" } },
+    "title": { "type": "string" },
+    "origin": { "type": "string" },
+    "originalTitle": { "type": "string" },
+    "duration": { "type": "number" },
+    "releaseYear": { "type": "number" },
+    "styles": { "type": "array", "items": { "type": "string" } },
+    "franchises": { "type": "array", "items": { "type": "string" } },
+    "disneyPlusId": { "type": "string" },
+    "homepage": { "type": "string" },
+    "imdbId": { "type": "string" },
+    "netflixId": { "type": "string" },
+    "primeVideoId": { "type": "string" },
+    "vimeoId": { "type": "string" },
+    "youtubeId": { "type": "string" }
+  },
+  "required": ["directors", "title", "origin", "duration", "releaseYear", "styles"],
+  "additionalProperties": false
+}

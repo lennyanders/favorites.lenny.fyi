@@ -1,0 +1,16 @@
+{
+  "type": "object",
+  "properties": {
+    "directors": { "type": "array", "items": { "type": "string" } },
+    "title": { "type": "string" },
+    "musicArtists": { "type": "array", "items": { "type": "string" } },
+    "releaseYear": { "type": "number" },
+    "styles": { "type": "array", "items": { "type": "string" } },
+    "homepage": { "type": "string" },
+    "imdbId": { "type": "string" },
+    "vimeoId": { "type": "string" },
+    "youtubeId": { "type": "string" }
+  },
+  "required": ["directors", "title", "musicArtists", "releaseYear", "styles"],
+  "additionalProperties": false
+}

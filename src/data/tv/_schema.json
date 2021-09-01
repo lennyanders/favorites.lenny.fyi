@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "properties": {
+    "creators": { "type": "array", "items": { "type": "string" } },
+    "title": { "type": "string" },
+    "origin": { "type": "string" },
+    "originalTitle": { "type": "string" },
+    "canceled": { "type": "boolean" },
+    "episodeCount": { "type": "number" },
+    "seasonCount": { "type": "number" },
+    "averageEpisodeDuration": { "type": "number" },
+    "releaseStart": { "type": "number" },
+    "releaseEnd": { "type": "number" },
+    "styles": { "type": "array", "items": { "type": "string" } },
+    "franchises": { "type": "array", "items": { "type": "string" } },
+    "disneyPlusId": { "type": "string" },
+    "homepage": { "type": "string" },
+    "imdbId": { "type": "string" },
+    "netflixId": { "type": "string" },
+    "primeVideoId": { "type": "string" },
+    "vimeoId": { "type": "string" },
+    "youtubeId": { "type": "string" }
+  },
+  "required": [
+    "creators",
+    "title",
+    "origin",
+    "episodeCount",
+    "seasonCount",
+    "averageEpisodeDuration",
+    "releaseStart",
+    "styles"
+  ],
+  "additionalProperties": false
+}

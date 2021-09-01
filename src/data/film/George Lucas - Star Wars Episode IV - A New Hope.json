@@ -1,0 +1,12 @@
+{
+  "directors": ["George Lucas"],
+  "title": "Star Wars: Episode IV - A New Hope",
+  "origin": "us",
+  "originalTitle": "Star Wars",
+  "duration": 121,
+  "releaseYear": 1977,
+  "franchises": ["Star Wars"],
+  "styles": ["Live action"],
+  "homepage": "https://www.starwars.com/films/star-wars-episode-iv-a-new-hope",
+  "imdbId": "0076759"
+}

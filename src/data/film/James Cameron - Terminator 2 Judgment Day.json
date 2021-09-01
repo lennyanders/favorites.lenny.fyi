@@ -1,0 +1,11 @@
+{
+  "directors": ["James Cameron"],
+  "title": "Terminator 2: Judgment Day",
+  "origin": "us",
+  "duration": 137,
+  "releaseYear": 1991,
+  "styles": ["Live action"],
+  "franchises": ["Terminator"],
+  "homepage": "https://www.lionsgate.com/movies/terminator-2-judgment-day",
+  "imdbId": "0103064"
+}
