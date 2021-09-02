@@ -1,4 +1,4 @@
-#!/usr/bin/env node --experimental-json-modules
+#!/usr/bin/env node "--experimental-json-modules"
 
 import { rm, mkdir, writeFile, readFile } from 'fs/promises';
 import { dirname, sep } from 'path';
