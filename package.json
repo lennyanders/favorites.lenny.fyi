@@ -14,12 +14,12 @@
   "devDependencies": {
     "@types/browser-sync": "^2.26.2",
     "@types/node": "^16.7.5",
-    "browser-sync": "^2.27.5",
     "csstype": "^3.0.8",
     "data": "file:data",
     "esbuild": "^0.12.24",
     "preact": "^10.5.14",
     "preact-render-to-string": "^5.1.19",
+    "sirv": "^1.0.17",
     "totalist": "^2.0.0",
     "watchlist": "^0.3.0"
   }

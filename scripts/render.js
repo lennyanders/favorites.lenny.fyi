@@ -3,9 +3,10 @@ import { dirname, sep } from 'path';
 import { totalist } from 'totalist';
 import { build } from 'esbuild';
 import { watch } from 'watchlist';
-import { init } from 'browser-sync';
 import { renderToString } from 'preact-render-to-string';
 import { isValidElement } from 'preact';
+import { createServer } from 'http';
+import sirv from 'sirv';
 import { __setCollections, __setPage } from 'data';
 
 try {
@@ -16,6 +17,8 @@ const cwd = process.cwd();
 const args = process.argv.slice(2);
 const serve = args.includes('--serve');
 const watchFiles = serve || args.includes('--watch');
+/** @type {() => void | undefined} */
+let reloadPage;
 
 const render = async () => {
   try {
@@ -88,6 +91,19 @@ const render = async () => {
     }
     if (typeof html !== 'string') continue;
 
+    if (serve) {
+      let index = html.indexOf('<script');
+      if (index === -1) index = html.indexOf('</body>');
+      if (index !== -1) {
+        html = `${html.slice(
+          0,
+          index,
+        )}<script>new EventSource('/reload-script').addEventListener('reload', () => location.reload())</script>${html.slice(
+          index,
+        )}`;
+      }
+    }
+
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, html, { encoding: 'utf-8' });
   }
@@ -111,10 +127,28 @@ const render = async () => {
     await writeFile('dist/main.css', css, { encoding: 'utf-8' });
     await rm('scripts/css-data.json');
   } catch (_) {}
+
+  if (serve && reloadPage) reloadPage();
 };
 
 if (watchFiles) await watch(['src'], render);
 
 await render();
 
-if (serve) init({ server: 'dist', open: false, notify: false });
+if (serve) {
+  const staticServer = sirv('dist', { dev: true });
+  createServer((req, res) => {
+    if (req.url === '/reload-script') {
+      res.writeHead(200, {
+        'Content-Type': 'text/event-stream; charset=utf-8',
+        'Cache-Control': 'no-cache',
+      });
+      reloadPage = () => {
+        res.write('event: reload\ndata:\n\n');
+        res.end();
+      };
+      return;
+    }
+    staticServer(req, res);
+  }).listen(3000);
+}
