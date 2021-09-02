@@ -1,3 +1,4 @@
+import { readFile } from 'fs/promises';
 import { totalist } from 'totalist';
 
 export const getJsonFiles = async <T>(folder: string) => {
@@ -7,7 +8,7 @@ export const getJsonFiles = async <T>(folder: string) => {
   });
 
   return await Promise.all<T>(
-    filePaths.map((filePath) => import(`file:///${filePath}`).then((m) => m.default)),
+    filePaths.map(async (filePath) => JSON.parse(await readFile(filePath, { encoding: 'utf-8' }))),
   );
 };
 
