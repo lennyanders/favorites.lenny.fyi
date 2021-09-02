@@ -1,5 +1,5 @@
 import { RenderableProps } from 'preact';
-import { style } from '../utils/css';
+import { style } from 's17r/css';
 
 export const iconClass = style({
   display: 'block',

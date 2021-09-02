@@ -1,6 +1,6 @@
 import { RenderableProps } from 'preact';
+import { style } from 's17r/css';
 import { AnyMediaItem } from '../shared';
-import { style } from '../utils/css';
 import { Akross } from './iconLinks/Akross';
 import { AmvNews } from './iconLinks/AmvNews';
 import { AnimeMusicVideos } from './iconLinks/AnimeMusicVideos';

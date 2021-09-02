@@ -1,4 +1,4 @@
-import { style } from '../utils/css';
+import { style } from 's17r/css';
 
 const footerClass = style({
   display: 'flex',

@@ -1,5 +1,5 @@
 import { RenderableProps } from 'preact';
-import { globalStyle, fontFace, style } from '../utils/css';
+import { globalStyle, fontFace, style } from 's17r/css';
 import { page } from 's17r/data';
 import { Nav } from '../components/Nav';
 import { Footer } from '../components/Footer';

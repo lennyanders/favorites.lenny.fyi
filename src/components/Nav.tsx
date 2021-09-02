@@ -1,5 +1,5 @@
 import { page, collections } from 's17r/data';
-import { globalStyle, style } from '../utils/css';
+import { globalStyle, style } from 's17r/css';
 
 const navClass = style({
   display: 'flex',

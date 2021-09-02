@@ -7,6 +7,9 @@
   "exports": {
     "./data": {
       "import": "./data/index.js"
+    },
+    "./css": {
+      "import": "./css/index.js"
     }
   }
 }

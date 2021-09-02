@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { rm, mkdir, writeFile, readFile } from 'fs/promises';
+import { rm, mkdir, writeFile } from 'fs/promises';
 import { dirname, sep } from 'path';
 import { fileURLToPath } from 'url';
 import { totalist } from 'totalist';
@@ -11,6 +11,7 @@ import { isValidElement } from 'preact';
 import { createServer } from 'http';
 import sirv from 'sirv';
 import { __setCollections, __setPage } from './data/index.js';
+import { cssData } from './css/data.js';
 
 try {
   await rm('dist', { recursive: true });
@@ -24,10 +25,6 @@ const watchFiles = serve || args.includes('--watch');
 let reloadPage;
 
 const render = async () => {
-  try {
-    await rm('scripts/css-data.json');
-  } catch (_) {}
-
   /** @type {string[]} */
   const entryPoints = [];
   await totalist('src', (_, path) => /\.p\.ts$|\.p\.tsx$/.test(path) && entryPoints.push(path));
@@ -113,22 +110,18 @@ const render = async () => {
 
   try {
     let css = '';
-    const rawData = await readFile('scripts/css-data.json', { encoding: 'utf-8' });
-    /** @type {import('../src/utils/css').CssData} */
-    const data = JSON.parse(rawData);
-    if (data.font) css += data.font.map((css) => `@font-face{${css}}`).join('');
-    if (data.global) {
-      for (const key in data.global) {
-        css += `${key}{${data.global[key].join(';')}}`;
+    if (cssData.font) css += cssData.font.map((css) => `@font-face{${css}}`).join('');
+    if (cssData.global) {
+      for (const key in cssData.global) {
+        css += `${key}{${cssData.global[key].join(';')}}`;
       }
     }
-    if (data.scoped) {
-      for (const key in data.scoped) {
-        css += `.${key}{${data.scoped[key]}}`;
+    if (cssData.scoped) {
+      for (const key in cssData.scoped) {
+        css += `.${key}{${cssData.scoped[key]}}`;
       }
     }
     await writeFile('dist/main.css', css, { encoding: 'utf-8' });
-    await rm('scripts/css-data.json');
   } catch (_) {}
 
   if (serve && reloadPage) reloadPage();
