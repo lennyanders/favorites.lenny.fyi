@@ -1,4 +1,4 @@
-import { page, collections } from 'data';
+import { page, collections } from 's17r/data';
 import { globalStyle, style } from '../utils/css';
 
 const navClass = style({

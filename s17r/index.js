@@ -9,7 +9,7 @@ import { renderToString } from 'preact-render-to-string';
 import { isValidElement } from 'preact';
 import { createServer } from 'http';
 import sirv from 'sirv';
-import { __setCollections, __setPage } from 'data';
+import { __setCollections, __setPage } from './data/index.js';
 
 try {
   await rm('dist', { recursive: true });
@@ -39,7 +39,7 @@ const render = async () => {
     bundle: true,
     write: false,
     inject: [`${dirname(import.meta.url.slice(8))}${sep}preact-shim.js`],
-    external: ['data'],
+    external: ['s17r'],
     mainFields: ['module', 'main'],
     publicPath: '/',
     loader: {
@@ -48,7 +48,7 @@ const render = async () => {
     },
     outdir: 'dist',
   });
-  /** @type {import('data').Collections} */
+  /** @type {import('./data').Collections} */
   const collections = {};
   const pages = [];
   for (const { path, contents } of outputFiles) {

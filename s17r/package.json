@@ -3,5 +3,10 @@
   "type": "module",
   "bin": {
     "s17r": "index.js"
+  },
+  "exports": {
+    "./data": {
+      "import": "./data/index.js"
+    }
   }
 }
