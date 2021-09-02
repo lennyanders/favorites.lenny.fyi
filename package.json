@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node --experimental-json-modules scripts/render.js --serve",
-    "build": "node --experimental-json-modules scripts/render.js"
+    "start": "s17r --serve",
+    "build": "s17r"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +19,7 @@
     "esbuild": "^0.12.24",
     "preact": "^10.5.14",
     "preact-render-to-string": "^5.1.19",
+    "s17r": "file:s17r",
     "sirv": "^1.0.17",
     "totalist": "^2.0.0",
     "watchlist": "^0.3.0"

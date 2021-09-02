@@ -1,3 +1,5 @@
+#!/usr/bin/env node --experimental-json-modules
+
 import { rm, mkdir, writeFile, readFile } from 'fs/promises';
 import { dirname, sep } from 'path';
 import { totalist } from 'totalist';
@@ -36,7 +38,7 @@ const render = async () => {
     minify: true,
     bundle: true,
     write: false,
-    inject: ['scripts/preact-shim.js'],
+    inject: [`${dirname(import.meta.url.slice(8))}${sep}preact-shim.js`],
     external: ['data'],
     mainFields: ['module', 'main'],
     publicPath: '/',

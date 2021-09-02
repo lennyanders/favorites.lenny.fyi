@@ -1,0 +1,7 @@
+{
+  "name": "s17r",
+  "type": "module",
+  "bin": {
+    "s17r": "index.js"
+  }
+}
