@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "s17r --serve",
-    "build": "s17r"
+    "start": "node --experimental-json-modules s17r --serve",
+    "build": "node --experimental-json-modules s17r"
   },
   "keywords": [],
   "author": "",
