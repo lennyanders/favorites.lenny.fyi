@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { rm, mkdir, writeFile, readFile } from 'fs/promises';
-import { dirname, sep } from 'path';
+import { dirname, sep, relative } from 'path';
 import { totalist } from 'totalist';
 import { build } from 'esbuild';
 import { watch } from 'watchlist';
@@ -38,7 +38,7 @@ const render = async () => {
     minify: true,
     bundle: true,
     write: false,
-    inject: [`${dirname(import.meta.url.slice(8))}${sep}preact-shim.js`],
+    inject: [relative(cwd, `${dirname(import.meta.url.slice(8))}/preact-shim.js`)],
     external: ['s17r'],
     mainFields: ['module', 'main'],
     publicPath: '/',
