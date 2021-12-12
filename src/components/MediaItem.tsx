@@ -45,8 +45,15 @@ export const MediaItem = ({ children, media }: RenderableProps<{ media: AnyMedia
         {media.title}
         {media.originalTitle && (
           <>
+            {' '}
             ({media.originalTitle}
-            {media.origin && <small class={originClass}>{media.origin}</small>})
+            {media.origin && (
+              <>
+                {' '}
+                <small class={originClass}>{media.origin}</small>
+              </>
+            )}
+            )
           </>
         )}
       </h3>
