@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { rm, mkdir, writeFile } from 'fs/promises';
+import { rm, mkdir, writeFile, cp } from 'fs/promises';
 import { dirname, sep } from 'path';
 import { fileURLToPath } from 'url';
 import { totalist } from 'totalist';
@@ -11,7 +11,6 @@ import { isValidElement } from 'preact';
 import { createServer } from 'http';
 import sirv from 'sirv';
 import { __setCollections, __setPage } from './data/index.js';
-import { cssData } from './css/data.js';
 
 try {
   await rm('dist', { recursive: true });
@@ -37,7 +36,7 @@ const render = async () => {
     bundle: true,
     write: false,
     inject: [`${dirname(fileURLToPath(import.meta.url))}${sep}preact-shim.js`],
-    external: ['s17r'],
+    external: ['s17r', 'esbuild', 'sass'],
     mainFields: ['module', 'main'],
     publicPath: '/',
     loader: {
@@ -59,7 +58,7 @@ const render = async () => {
       if (typeof pageModule.render !== 'function') continue;
 
       const fileType = typeof pageModule.extension === 'string' ? pageModule.extension : 'html';
-      const newFolder = !path.endsWith(`${sep}index.p.js`);
+      const newFolder = fileType === 'html' && !path.endsWith(`${sep}index.p.js`);
       const outPath = `${path.slice(0, -5)}${newFolder ? `${sep}index` : ''}.${fileType}`;
       const url = `/${outPath
         .slice(cwd.length + 6, -11)
@@ -108,28 +107,18 @@ const render = async () => {
     await writeFile(outPath, html, { encoding: 'utf-8' });
   }
 
-  try {
-    let css = '';
-    if (cssData.font) css += cssData.font.map((css) => `@font-face{${css}}`).join('');
-    if (cssData.global) {
-      for (const key in cssData.global) {
-        css += `${key}{${cssData.global[key].join(';')}}`;
-      }
-    }
-    if (cssData.scoped) {
-      for (const key in cssData.scoped) {
-        css += `.${key}{${cssData.scoped[key]}}`;
-      }
-    }
-    await writeFile('dist/main.css', css, { encoding: 'utf-8' });
-  } catch (_) {}
-
   if (serve && reloadPage) reloadPage();
 };
 
-if (watchFiles) await watch(['src'], render);
+const copyPublic = async () => await cp('public', 'dist', { recursive: true });
+
+if (watchFiles) {
+  await watch(['src'], render);
+  await watch(['public'], copyPublic);
+}
 
 await render();
+await copyPublic();
 
 if (serve) {
   const staticServer = sirv('dist', { dev: true });

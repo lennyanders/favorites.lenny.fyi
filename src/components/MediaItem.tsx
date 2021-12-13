@@ -1,5 +1,4 @@
 import { RenderableProps } from 'preact';
-import { style } from 's17r/css';
 import { AnyMediaItem } from '../shared';
 import { Akross } from './iconLinks/Akross';
 import { AmvNews } from './iconLinks/AmvNews';
@@ -12,36 +11,10 @@ import { Vimeo } from './iconLinks/Vimeo';
 import { Web } from './iconLinks/Web';
 import { YouTube } from './iconLinks/YouTube';
 
-const mediaItemClass = style({
-  display: 'grid',
-  gap: '0.5rem',
-  padding: '0.75rem 1rem',
-  borderRadius: '0.25rem',
-  backgroundColor: '#191919',
-  color: '#ddd',
-});
-
-const topClass = style({
-  display: 'flex',
-  gap: '0.25rem',
-  color: '#fafafa',
-});
-
-const headlineClass = style({
-  flex: 1,
-  margin: 0,
-});
-
-const originClass = style({
-  textTransform: 'uppercase',
-  opacity: 0.75,
-  fontWeight: 400,
-});
-
 export const MediaItem = ({ children, media }: RenderableProps<{ media: AnyMediaItem }>) => (
-  <li class={mediaItemClass}>
-    <div class={topClass}>
-      <h3 class={headlineClass}>
+  <li class="media-item">
+    <div class="media-item__top">
+      <h3 class="media-item__headline">
         {media.title}
         {media.originalTitle && (
           <>
@@ -50,7 +23,7 @@ export const MediaItem = ({ children, media }: RenderableProps<{ media: AnyMedia
             {media.origin && (
               <>
                 {' '}
-                <small class={originClass}>{media.origin}</small>
+                <small class="media-item__origin">{media.origin}</small>
               </>
             )}
             )

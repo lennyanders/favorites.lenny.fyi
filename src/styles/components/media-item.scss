@@ -1,0 +1,25 @@
+.media-item {
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  background-color: #191919;
+  color: #ddd;
+
+  &__top {
+    display: flex;
+    gap: 0.25rem;
+    color: #fafafa;
+  }
+
+  &__headline {
+    flex: 1;
+    margin: 0;
+  }
+
+  &__origin {
+    text-transform: uppercase;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+}

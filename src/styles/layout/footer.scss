@@ -1,0 +1,10 @@
+@use 'sass:math';
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+  gap: 1rem;
+  border-top: math.div(1rem, 8) solid #191919;
+  color: #ddd;
+}
